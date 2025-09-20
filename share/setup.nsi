@@ -5,9 +5,9 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 1.1.3
-!define COMPANY "Team Energycoin"
-!define URL http://energycoin.pw
+!define VERSION 1.6.2
+!define COMPANY "Energycoin Foundation"
+!define URL https://www.energycoinfoundation.org
 
 # MUI Symbol Definitions
 !define MUI_ICON "..\share\pixmaps\bitcoin.ico"
@@ -45,13 +45,13 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile ..\release\EnergyCoin-1.1.3-win32-setup.exe
+OutFile ..\release\EnergyCoin-1.6.2-win32-setup.exe
 InstallDir $PROGRAMFILES\EnergyCoin
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 1.1.3.0
+VIProductVersion 1.6.2.0
 VIAddVersionKey ProductName EnergyCoin
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"

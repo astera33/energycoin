@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2015-2017 The EnergyCoin Developers
+// Copyright (c) 2014-2025 The EnergyCoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1095,6 +1095,44 @@ const boost::filesystem::path &GetDataDir(bool fNetSpecific)
     return path;
 }
 
+
+string randomStrGen(int length) {
+    static string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    string result;
+    result.resize(length);
+    for (int32_t i = 0; i < length; i++)
+        result[i] = charset[rand() % charset.length()];
+
+    return result;
+}
+
+void createConf()
+{
+    srand(static_cast<unsigned int>(time(NULL)));
+
+    ofstream pConf;
+#if BOOST_FILESYSTEM_VERSION >= 3
+    pConf.open(GetConfigFile().generic_string().c_str());
+#else
+    pConf.open(GetConfigFile().string().c_str());
+#endif
+    pConf << "rpcuser=user"
+            + randomStrGen(15)
+            + "\nrpcpassword="
+            + randomStrGen(15)
+            + "\nrpcport=22705"
+            + "\np2pport=22706"
+            + "\nrpcallowip=127.0.0.1"
+            + "\ndaemon=1"
+            + "\nserver=1"
+            + "\ndisablewallet=0"
+            + "\ntxindex=1"
+            + "\nsplitblkfiles=1"
+            + "\n#(0=off, 1=on) staking - turn staking on or off"
+            + "\nstaking=1";
+    pConf.close();
+}
+
 boost::filesystem::path GetConfigFile()
 {
     boost::filesystem::path pathConfigFile(GetArg("-conf", "EnergyCoin.conf"));
@@ -1107,7 +1145,12 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+    {
+        createConf();
+        new(&streamConfig) boost::filesystem::ifstream(GetConfigFile());
+        if(!streamConfig.good())
+            return;
+	}
 
     set<string> setOptions;
     setOptions.insert("*");

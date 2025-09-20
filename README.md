@@ -1,10 +1,17 @@
 EnergyCoin integration/staging tree
 ==================================
 
-Copyright (c) 2014-2020 EnergyCoin Developers
+Copyright (c) 2014-2025 EnergyCoin Developers
 
 Change Log
 ---------
+v1.6.2.0:
+- Add auto create EnergyCoin.conf & auto generate rpc user - rpc password
+- Update checkpoints
+- Added DNS seeds
+- Update the new EnergyCoin ico & EnergyCoin icon logo
+- Change RPC Port connection to 22705, Fix error rpc connection
+
 v1.6.1.0:
 - Add VOut parameter in listsinceblock and gettransaction RPC methods
 - Update checkpoints
@@ -139,8 +146,9 @@ After block height 2.1m, EnergyCoin adopts a fixed PoS block reward of 5 ENRG.
 
 
 Ports:
-P2P:	22705
-RPC:	22706
+RPC:	22705
+P2P:	22706
+
 
 Support Development by Donation: ePvnQvX5RbzDCzt3qSB5TmBz89BJMvpG46
 

@@ -15,8 +15,8 @@
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright © 2009-2014 The EnergyCoin developers</source>
-        <translation>Copyright © 2009-2014 The EnergyCoin developers</translation>
+        <source>Copyright © 2014-2025 The EnergyCoin developers</source>
+        <translation>Copyright © 2014-2025 The EnergyCoin developers</translation>
     </message>
     <message>
         <location line="+14"/>
